@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký nhận thông tin</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            color: #5b4324;
+            background:
+                linear-gradient(rgba(255, 210, 130, .55), rgba(255, 210, 130, .55)),
+                #f7c66d;
+        }
+
+        .page {
+            width: 980px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            height: 120px;
+            position: relative;
+            border-bottom: 1px solid rgba(130, 80, 20, .2);
+        }
+
+        .site-name {
+            position: absolute;
+            left: 0;
+            top: 27px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #70542f;
+        }
+
+        .logo {
+            position: absolute;
+            left: 50%;
+            top: 12px;
+            transform: translateX(-50%);
+            margin: 0;
+            font-size: 64px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -6px;
+            color: #250000;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .tagline {
+            position: absolute;
+            right: 25px;
+            top: 34px;
+            font-size: 13px;
+            font-style: italic;
+            color: #70542f;
+        }
+
+        .search {
+            position: absolute;
+            right: 25px;
+            top: 65px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .search input {
+            width: 130px;
+            height: 23px;
+            border: 1px solid #c8b38c;
+            padding: 3px 6px;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+        }
+
+        .search button {
+            height: 23px;
+            padding: 0 14px;
+            border: 1px solid #27752c;
+            border-radius: 3px;
+            background: linear-gradient(#74d17c, #19822b);
+            color: white;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        /* ===== MAIN ===== */
+        .main {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 10px;
+            align-items: start;
+            padding-top: 10px;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            padding-top: 0;
+        }
+
+        .menu {
+            padding: 5px;
+            background: #9b681b;
+            border-radius: 3px;
+            box-shadow: 0 2px 2px rgba(90, 50, 0, .45);
+        }
+
+        .menu a {
+            display: block;
+            margin-bottom: 7px;
+            padding: 17px 5px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background: #390000;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .menu a:last-child {
+            margin-bottom: 0;
+        }
+
+        .menu a:hover {
+            background: #520b0b;
+        }
+
+        .connect {
+            margin-top: 14px;
+            background: #fff1bc;
+            box-shadow: 0 2px 2px rgba(100, 60, 10, .2);
+        }
+
+        .connect-title {
+            padding: 9px;
+            text-align: center;
+            background: #f2c16b;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .social {
+            display: flex;
+            justify-content: space-around;
+            padding: 16px 20px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .twitter { color: #2da8dc; }
+        .facebook { color: #35548a; }
+        .google { color: #d44225; }
+
+        .placeholder {
+            margin-top: 23px;
+            padding: 5px;
+            background: #f5c367;
+            box-shadow: 3px 3px 0 rgba(150, 95, 20, .3);
+        }
+
+        .placeholder h3 {
+            margin: 0 0 12px;
+            padding: 8px;
+            text-align: center;
+            background: #bd811c;
+            color: #573600;
+            font-size: 17px;
+        }
+
+        .placeholder h4 {
+            margin: 10px 5px 5px;
+            font-size: 11px;
+        }
+
+        .placeholder p {
+            margin: 0 5px 7px;
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .placeholder a {
+            margin-left: 5px;
+            color: #287a25;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .view-more {
+            display: block;
+            margin: 17px 5px 5px;
+            padding: 7px;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(#6bd57a, #168326);
+            border: 1px solid #277d31;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 1px 1px #315d31;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            min-height: 980px;
+            padding: 10px 32px 30px;
+            background: rgba(255, 255, 255, .72);
+        }
+
+        .content h1 {
+            margin: 0 0 22px;
+            color: #805f2e;
+            font-size: 27px;
+            font-weight: normal;
+        }
+
+        .intro {
+            margin-bottom: 26px;
+            font-size: 12px;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        fieldset {
+            margin: 0 0 8px;
+            padding: 0 10px 12px;
+            border: 1px solid #aaa;
+        }
+
+        legend {
+            padding: 0 3px;
+            font-size: 13px;
+        }
+
+        .form-row {
+            margin: 9px 0 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 138px;
+            height: 22px;
+            padding: 2px 5px;
+            border: 1px solid #aaa;
+            background: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+        }
+
+        textarea {
+            width: 245px;
+            height: 52px;
+            resize: vertical;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+            height: auto;
+            margin-right: 4px;
+            vertical-align: middle;
+        }
+
+        .radio-group,
+        .check-group {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+        }
+
+        .radio-group label,
+        .check-group label {
+            display: inline-block;
+            margin-right: 7px;
+            margin-bottom: 0;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .buttons button {
+            padding: 2px 8px;
+            border: 1px solid #26712d;
+            border-radius: 2px;
+            background: linear-gradient(#76d17c, #238b31);
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            margin-top: 0;
+            padding: 30px 0 20px;
+            border-top: 1px solid rgba(130, 80, 20, .15);
+        }
+
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 35px;
+            text-align: center;
+        }
+
+        .footer-icon {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            background: #a87528;
+            color: #fff2c6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            font-size: 27px;
+            box-shadow: inset 0 2px 0 rgba(255,255,255,.25);
+        }
+
+        .footer-columns p {
+            margin: 0;
+            text-align: justify;
+            font-size: 10px;
+            line-height: 1.75;
+        }
+
+        .copyright {
+            margin-top: 35px;
+            padding-top: 22px;
+            border-top: 4px solid rgba(165, 105, 20, .35);
+            text-align: center;
+            color: #b48745;
+            font-size: 9px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1000px) {
+            .page {
+                width: 94%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .header {
+                height: auto;
+            }
+
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: 2;
+            }
+
+            .content {
+                order: 1;
+            }
+
+            .footer-columns {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="page">
+
+    <header>
+        <div class="site-name">Blafletterpress</div>
+
+        <div class="logo">BFP</div>
+
+        <div class="tagline">Your online source of trusted news</div>
+
+        <div class="search">
+            <input type="search" placeholder="Enter search query">
+            <button type="button">Search</button>
+        </div>
+    </header>
+
+    <main class="main">
+
+        <aside class="sidebar">
+            <nav class="menu">
+                <a href="index.html">HOME</a>
+                <a href="about.html">ABOUT</a>
+                <a href="news.html">NEWS</a>
+                <a href="blog.html">BLOG</a>
+            </nav>
+
+            <section class="connect">
+                <div class="connect-title">Connect with us!</div>
+                <div class="social">
+                    <span class="twitter">♥</span>
+                    <span class="facebook">f</span>
+                    <span class="google">G+</span>
+                </div>
+            </section>
+
+            <section class="placeholder">
+                <h3>Placeholder</h3>
+
+                <h4>Title Sample One</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius.</p>
+                <a href="#">Read more</a>
+
+                <h4>Title Sample One</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius.</p>
+                <a href="#">Read more</a>
+
+                <a class="view-more" href="#">View More</a>
+            </section>
+        </aside>
+
+        <section class="content">
+            <h1>Đăng ký nhận thông tin</h1>
+
+            <p class="intro">
+                Điền thông tin bên dưới để nhận bản tin định kỳ. Các trường có dấu * là bắt buộc.
+            </p>
+
+            <form action="#" method="post">
+
+                <fieldset>
+                    <legend>Thông tin tài khoản</legend>
+
+                    <div class="form-row">
+                        <label for="fullname">Họ và tên *</label>
+                        <input id="fullname" name="fullname" type="text"
+                               placeholder="Nguyễn Văn A" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="email">Email *</label>
+                        <input id="email" name="email" type="email"
+                               placeholder="ban@example.com" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="password">Mật khẩu * (tối thiểu 8 ký tự)</label>
+                        <input id="password" name="password" type="password"
+                               minlength="8" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="phone">Số điện thoại * (10 số, bắt đầu bằng 0)</label>
+                        <input id="phone" name="phone" type="tel"
+                               pattern="0[0-9]{9}" maxlength="10" required>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Thông tin cá nhân</legend>
+
+                    <div class="form-row">
+                        <label for="birthday">Ngày sinh *</label>
+                        <input id="birthday" name="birthday" type="date" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="age">Độ tuổi *</label>
+                        <input id="age" name="age" type="number" min="1" max="120" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Giới tính *</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gender" value="nam" required> Nam</label>
+                            <label><input type="radio" name="gender" value="nu"> Nữ</label>
+                            <label><input type="radio" name="gender" value="khac"> Khác</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Tùy chọn nhận tin</legend>
+
+                    <div class="form-row">
+                        <label>Chủ đề quan tâm</label>
+                        <div class="check-group">
+                            <label><input type="checkbox" name="topic" value="tin-tuc"> Tin tức</label>
+                            <label><input type="checkbox" name="topic" value="blog"> Blog</label>
+                            <label><input type="checkbox" name="topic" value="su-kien"> Sự kiện</label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="region">Khu vực</label>
+                        <select id="region" name="region">
+                            <option value="">-- Chọn khu vực --</option>
+                            <option>Miền Bắc</option>
+                            <option>Miền Trung</option>
+                            <option>Miền Nam</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="message">Lời nhắn *</label>
+                        <textarea id="message" name="message"
+                                  placeholder="Bạn muốn nhận nội dung gì?" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="check-group">
+                            <label>
+                                <input type="checkbox" name="terms" required>
+                                Tôi đã đồng ý với điều khoản sử dụng *
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="buttons">
+                    <button type="submit">Đăng ký</button>
+                    <button type="reset">Nhập lại</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-columns">
+            <div>
+                <div class="footer-icon">⌂</div>
+                <p>
+                    This website template has been designed by Free Website
+                    Templates for you, for free. You can replace all this text
+                    with your own text.
+                </p>
+            </div>
+
+            <div>
+                <div class="footer-icon">♨</div>
+                <p>
+                    This website template has been designed by Free Website
+                    Templates for you, for free. You can replace all this text
+                    with your own text.
+                </p>
+            </div>
+
+            <div>
+                <div class="footer-icon">◎</div>
+                <p>
+                    This website template has been designed by Free Website
+                    Templates for you, for free. You can replace all this text
+                    with your own text.
+                </p>
+            </div>
+
+            <div>
+                <div class="footer-icon">✎</div>
+                <p>
+                    This website template has been designed by Free Website
+                    Templates for you, for free. You can replace all this text
+                    with your own text.
+                </p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © Copyright © 2011.Company name all rights reserved
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>
