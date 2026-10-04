@@ -1,6 +1,7 @@
 /* =====================================================================
    Blakletterpress — Trang khuyến mãi thiệp Tết 2026
    HOẠT ĐỘNG 2 — CSS cho phần DÙNG GenAI
+   Chủ đề: Box model + Position
    ===================================================================== */
 
 * {
@@ -20,12 +21,12 @@ a {
 	color: inherit;
 }
 
-/* FIX: dùng clip để không ảnh hưởng position: sticky */
 .page {
-	overflow-x: clip;
+	overflow-x: hidden;
 }
 
 /* ===== Header / thanh điều hướng ===== */
+
 .site-header {
 	background: #2b2b2b;
 	position: sticky;
@@ -34,9 +35,10 @@ a {
 }
 
 .header-inner {
-	max-width: 1000px;
+	max-width: 1100px;
 	margin: 0 auto;
-	padding: 16px 24px;
+	padding: 20px 24px;
+
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -44,19 +46,22 @@ a {
 
 .brand {
 	color: #fff;
-	font-size: 24px;
+	font-size: 25px;
 	font-weight: bold;
 	text-decoration: none;
 }
 
 .main-nav ul {
 	list-style: none;
+
 	display: flex;
-	gap: 24px;
+	align-items: center;
+	gap: 30px;
 }
 
 .main-nav a {
 	color: #ddd;
+	font-size: 17px;
 	text-decoration: none;
 }
 
@@ -65,154 +70,304 @@ a {
 }
 
 /* ===== Hero ===== */
+
 .hero {
 	position: relative;
-	height: 360px;
+	height: 415px;
 	overflow: hidden;
 }
 
 .hero-bg {
+	display: block;
+
 	width: 100%;
 	height: 100%;
+
 	object-fit: cover;
+
 	transform: scale(1.08);
 }
 
 .hero-overlay {
 	position: absolute;
+
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+
 	width: 80%;
-	max-width: 560px;
+	max-width: 700px;
+
 	text-align: center;
+
 	color: #fff;
-	text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+	text-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
 }
 
 .hero-overlay h1 {
-	font-size: 34px;
-	margin-bottom: 12px;
+	margin-bottom: 14px;
+
+	font-size: 36px;
+	font-weight: 700;
 }
 
 .hero-overlay p {
+	margin-bottom: 25px;
+
 	font-size: 18px;
-	margin-bottom: 20px;
 }
 
 .hero-btn {
 	display: inline-block;
-	padding: 12px 28px;
+
+	padding: 13px 31px;
+
 	background: #c0392b;
+
 	color: #fff;
 	text-decoration: none;
+
 	border-radius: 4px;
 }
 
+.hero-btn:hover {
+	background: #a93226;
+}
+
 /* ===== Khu sản phẩm ===== */
+
 .products {
-	max-width: 1000px;
-	margin: -48px auto 48px;
-	padding: 24px 24px 0;
+	max-width: 1100px;
+
+	margin: 0 auto;
+
+	padding: 55px 24px 60px;
+
 	position: relative;
-	z-index: 1;
-	background: #f4f1ea;
-	border-radius: 16px 16px 0 0;
+
+	background: transparent;
 }
 
 .products h2 {
-	margin-bottom: 24px;
-	font-size: 28px;
+	margin-bottom: 28px;
+
+	font-size: 30px;
+	font-weight: 700;
 }
+
+/* ===== Danh sách card ===== */
 
 .card-list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 24px;
+
+	gap: 28px;
 }
+
+/* ===== Card ===== */
 
 .card {
-	flex: 0 0 calc((100% - 48px) / 3);
-	min-height: 320px;
 	position: relative;
 
-	/* FIX: padding + border được tính bên trong width */
-	box-sizing: border-box;
+	/*
+		3 card trên một hàng
+
+		Tổng 2 gap:
+		28px × 2 = 56px
+	*/
+	flex: 0 0 calc((100% - 56px) / 3);
+
+	min-height: 320px;
 
 	background: #fff;
-	border: 1px solid #e0d8c8;
+
+	border: 1px solid #ddd5c8;
 	border-radius: 8px;
+
 	padding: 16px;
+
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+	box-sizing: border-box;
 }
+
+/* ===== Badge giảm giá ===== */
 
 .badge {
 	position: absolute;
+
 	top: 12px;
 	right: 12px;
 
-	/* FIX: đưa badge lên trên ảnh */
-	z-index: 3;
+	z-index: 5;
 
 	background: #c0392b;
+
 	color: #fff;
+
 	font-size: 14px;
 	font-weight: bold;
+
 	padding: 4px 10px;
+
 	border-radius: 20px;
 }
 
+/* ===== Ảnh sản phẩm ===== */
+
 .card img {
 	display: block;
+
 	width: 100%;
 	height: 180px;
-	object-fit: cover;
-	border-radius: 4px;
 
-	/* GIỮ NGUYÊN: đây không phải lỗi */
-	position: relative;
-	z-index: 2;
+	object-fit: cover;
+
+	border-radius: 4px;
 }
+
+/* ===== Nội dung card ===== */
 
 .card-body h3 {
 	margin: 12px 0 8px;
+
 	font-size: 20px;
 }
 
 .card-body p {
 	margin-bottom: 8px;
+
 	font-size: 15px;
+
 	color: #555;
 }
 
 .card-body .price {
 	color: #c0392b;
+
 	font-weight: bold;
 	font-size: 18px;
 }
 
 /* ===== Nút lên đầu trang ===== */
+
 .back-to-top {
 	position: fixed;
-	bottom: 24px;
-	right: 24px;
+
+	right: 28px;
+	bottom: 28px;
+
 	width: 48px;
 	height: 48px;
+
 	background: #2b2b2b;
+
 	color: #fff;
+
 	text-align: center;
 	line-height: 48px;
+
 	font-size: 22px;
 	text-decoration: none;
+
 	border-radius: 50%;
+
 	z-index: 200;
 }
 
+.back-to-top:hover {
+	background: #444;
+}
+
 /* ===== Footer ===== */
+
 .site-footer {
 	padding: 32px 24px;
+
 	background: #2b2b2b;
+
 	color: #cfcfcf;
+
 	text-align: center;
+
 	font-size: 14px;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 900px) {
+
+	.header-inner {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.card {
+		flex: 0 0 calc((100% - 28px) / 2);
+	}
+
+}
+
+@media (max-width: 650px) {
+
+	.header-inner {
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.main-nav ul {
+		gap: 18px;
+	}
+
+	.hero {
+		height: 360px;
+	}
+
+	.hero-overlay {
+		width: 90%;
+	}
+
+	.hero-overlay h1 {
+		font-size: 30px;
+	}
+
+	.hero-overlay p {
+		font-size: 16px;
+	}
+
+	.products {
+		padding-top: 40px;
+	}
+
+	.card {
+		flex: 0 0 100%;
+	}
+
+}
+
+@media (max-width: 420px) {
+
+	.brand {
+		font-size: 22px;
+	}
+
+	.main-nav a {
+		font-size: 15px;
+	}
+
+	.hero-overlay h1 {
+		font-size: 26px;
+	}
+
+	.products h2 {
+		font-size: 26px;
+	}
+
+	.back-to-top {
+		right: 18px;
+		bottom: 18px;
+		width: 44px;
+		height: 44px;
+		line-height: 44px;
+	}
 }
